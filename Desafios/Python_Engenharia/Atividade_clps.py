@@ -23,13 +23,14 @@ while True:
     try:
         clp = int(input("Qual clp?"))
         clp_escolhido = lista_clp[clp]
-    except:
+    except(ValueError,IndexError):  #Tenta tratar o clp tem que ser um numero inteiro e o index trata de verificar o indice se aquele indice ta no limite da lista
          print("Erro: CLP inválido!")
          continue
   
     Sensor_nome = input("Qual sensor? ")
 
     if Sensor_nome == 'fim':
+      print("Programa finalizado...")
       break
 
     if not trata_erro(Sensor_nome, clp_escolhido):
