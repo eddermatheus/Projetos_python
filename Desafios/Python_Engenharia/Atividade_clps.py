@@ -3,7 +3,8 @@ def trata_erro(nome_sensor, clp_escolhido):
     if nome_sensor not in clp_escolhido:
         print("Erro: Sensor inválido!")
         return False
-    return True
+    else:
+     return True
  
 def lersensor_temperatura(Nome_sensor):
  valor_sensor = random.randint(0,100)
@@ -23,7 +24,7 @@ while True:
     try:
         clp = int(input("Qual clp?"))
         clp_escolhido = lista_clp[clp]
-    except(ValueError,IndexError):  #Tenta tratar o clp tem que ser um numero inteiro e o index trata de verificar o indice se aquele indice ta no limite da lista
+    except(ValueError,IndexError):  # tratar o "clp" que tem que ser um numero inteiro e o index trata de verificar o indice se aquele indice ta no limite da lista
          print("Erro: CLP inválido!")
          continue
   
