@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-tolerancia = 1e-6 #tolerancia como referença o valor mais baixo possível
+##tolerancia = 1e-6 #tolerancia como referença o valor mais baixo possível
 
 for c in range(4):
     I_Curva1 = list(map(lambda x: float(x), input("Lista com os valores da corrente para a primeira curva I-V: ").split(",")))
@@ -20,21 +20,22 @@ for c in range(4):
     passo = 1
     x = 1 
 
+    while 0 < x < len(P_curva1) - 1:
+      Pk = P_curva1[x]
+      Pk_1 = P_curva1[x-1]
+
+      if Pk > Pk_1:
+        x += passo
+      else:
+        passo = -passo
+        x += passo
+
     # achar Isc e Voc
     for i in range(len(I_Curva1)):
-        if abs(V_curva1[i]) < tolerancia:
+        if abs(V_curva1[i]) == 0:  #Para pegar o dado de ISc onde V = 0
             Isc = I_Curva1[i]
-        if abs(I_Curva1[i]) < tolerancia:
+        if abs(I_Curva1[i]) == 0:
             voc = V_curva1[i]
-
-    # fallback (caso não ache zero exato)
-    if Isc is None:
-        idx = V_curva1.index(min(V_curva1, key=abs))
-        Isc = I_Curva1[idx]
-
-    if voc is None:
-        idx = I_Curva1.index(min(I_Curva1, key=abs))
-        voc = V_curva1[idx]
 
     # PRINT no lugar certo
     print(f"\nCurva {c+1}:")  #esse c vai de 0 a 4 , mas c +1 => curva 1 para c = 0 + 1
