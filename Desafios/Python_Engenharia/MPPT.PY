@@ -3,8 +3,8 @@ import numpy as np
 
 
 for c in range(4):
-    I_Curva1 = list(map(lambda x: float(x), input("Lista com os valores da corrente para a primeira curva I-V: ").split(",")))
-    V_curva1 = list(map(lambda x: float(x), input("Lista com os valores da tensão para a primeira curva I-V: ").split(",")))
+    I_Curva1 = list(map(lambda x: float(x), input(f"Lista com os valores da  para {c + 1}º curva I-V: ").split(",")))
+    V_curva1 = list(map(lambda x: float(x), input(f"Lista com os valores da tensão para a {c + 1}º curva I-V: ").split(",")))
     # código abaixo foi criado pra fazer a curva da Potência  -> P=VxI
     P_curva1 = [V_curva1[i] * I_Curva1[i] for i in range(len(I_Curva1))]
 
@@ -57,11 +57,17 @@ for c in range(4):
     plt.plot(V_curva1, I_Curva1)
     plt.scatter(Vmp, Imp)
     plt.text(Vmp, Imp, "MPP")
+    plt.scatter(0,Isc)
+    plt.text(0,Isc,"Isc")
+    plt.scatter(voc,"Voc")
+    plt.text(voc,0,"Voc")
 
     plt.figure(2)
     plt.plot(V_curva1, P_curva1)
     plt.scatter(Vmp, Pmax)
     plt.text(Vmp, Pmax, "MPP")
+    plt.scatter(voc,0)
+    plt.text(voc,0,"Voc")
 
 # labels (fora do loop)
 plt.figure(1)
