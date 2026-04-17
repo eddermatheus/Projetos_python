@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-for c in range(4):
+for c in range(1):
     I_Curva1 = list(map(lambda x: float(x), input(f"Lista com os valores da  para {c + 1}º curva I-V: ").split(",")))
     V_curva1 = list(map(lambda x: float(x), input(f"Lista com os valores da tensão para a {c + 1}º curva I-V: ").split(",")))
     # código abaixo foi criado pra fazer a curva da Potência  -> P=VxI
@@ -20,6 +20,7 @@ for c in range(4):
     direcao = 1
 
     for k in range(1, len(V_curva1)):
+       
         dP = P_curva1[k] - P_curva1[k-1]
         dV = V_curva1[k] - V_curva1[k-1]
 
@@ -34,7 +35,7 @@ for c in range(4):
             else:
               direcao = 1
 
-        Vref += direcao * abs(dV)
+        Vref = V_curva1[k] + direcao * abs(dV)
     
 
     # achar Isc e Voc
